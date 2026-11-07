@@ -19,7 +19,7 @@ test('bouquet moves, stationery folds both ways, and wishes dissolve before the 
  await expect(page.getByText('a little note, unfolding…')).toBeVisible();
  await expect(page.locator('.paper-fold-top')).toHaveCSS('animation-name','paper-top-open');
  await expect(page.locator('.paper-fold-bottom')).toHaveCSS('animation-name','paper-bottom-open');
- await expect(page.locator('.floating-letter-photo')).toHaveCount(5);
+ await expect(page.locator('.floating-letter-photo')).toHaveCount(4);
  // Wait for the actual 3D paper fold to finish before accessing the letter.
  await expect.poll(()=>page.locator('.paper-fold-top').evaluate(el=>el.getAnimations().every(a=>a.playState==='finished'))).toBe(true);
  await page.screenshot({path:testInfo.outputPath('unfolded-letter.png'),fullPage:true});

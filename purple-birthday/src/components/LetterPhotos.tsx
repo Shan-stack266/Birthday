@@ -16,7 +16,7 @@ export default function LetterPhotos({folding}:{folding:boolean}){
   node.scrollTo({left,behavior:reduced?'instant':'smooth'});setActive(left>=max-1?gift.letterPhotos.length-1:Math.round(left/step));
  }
  function track(){const node=gallery.current;if(!node)return;if(node.scrollLeft>=node.scrollWidth-node.clientWidth-1){setActive(gift.letterPhotos.length-1);return}let closest=0;let distance=Infinity;Array.from(node.children).forEach((card,i)=>{const delta=Math.abs((card as HTMLElement).offsetLeft-node.offsetLeft-18-node.scrollLeft);if(delta<distance){closest=i;distance=delta}});setActive(closest)}
- return <aside className="letter-photo-gallery" aria-label="Five little reasons">
+ return <aside className="letter-photo-gallery" aria-label="Four little reasons">
   <div className="photo-gallery-intro"><Heart size={14}/><span>little things that make you, you</span></div>
   <div ref={gallery} className="photo-gallery-track" role="region" aria-label="Photo memories" tabIndex={0} onScroll={track} onKeyDown={e=>{if(e.key==='ArrowRight'){e.preventDefault();show(active+1)}if(e.key==='ArrowLeft'){e.preventDefault();show(active-1)}}}>
    {gift.letterPhotos.map((photo,i)=><motion.figure key={photo.id} className={`floating-letter-photo floating-photo-${i+1}`} initial={{opacity:0,y:reduced?0:12}} animate={{opacity:folding?0:1,y:0}} transition={folding?{duration:reduced?0:.2}:{...spring,delay:reduced?0:.85+i*.13}}>

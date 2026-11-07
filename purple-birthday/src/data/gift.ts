@@ -7,8 +7,6 @@ export const gift = {
   sharedMemory: '', // Add a true favorite memory here; it appears near the start of the letter.
   insideJokes: [] as string[], // Add your own little jokes to the happiness jar.
   closingLine: 'Another year of you, and I’m so lucky to be here for it.',
-  musicDedication: 'This song reminds me of you.',
-  spotify: { trackId: '5rDXfGMWI6S8wkXR0MHsvv', title: 'love.', artist: 'wave to earth' },
   letter: [
     `It's your dayyy!!! Happy 18th Birthday, Marlisang! 💜`,
     `I just want to say na I'm very thankful nga naila taka, despite all these kahadloks of mine nga mo-meet ug someone new after everything that happened to me in the past. I never thought I'd say this to you, especially since bag-o pa sad ta ga-talk, pero I'm already very, very comfortable with you. It's like we have this connection nga mura'g dugay na kaayo ta nagkaila.`,
@@ -21,7 +19,6 @@ export const gift = {
   ],
   letterEmphasis: [6],
   letterPhotos: [
-    { id: 1, src: '/photos/marlisang-1.jpg', objectPosition: '50% 50%', caption: 'Your smile makes everything a little brighter.' },
     { id: 2, src: '/photos/marlisang-2.jpg', objectPosition: '55% 50%', caption: "You're effortlessly beautiful, inside and out." },
     { id: 3, src: '/photos/marlisang-3.jpg', objectPosition: '50% 45%', caption: "There's something about you that feels like magic." },
     { id: 4, src: '/photos/marlisang-4.jpg', objectPosition: '55% 45%', caption: 'You make ordinary moments feel special.' },

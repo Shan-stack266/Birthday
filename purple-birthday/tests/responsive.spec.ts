@@ -9,7 +9,6 @@ test('the story adapts to small phones, tablets, laptops, and landscape touch sc
   const context=await browser.newContext({baseURL:'http://127.0.0.1:5174',viewport:{width:size.width,height:size.height},hasTouch:size.name!=='desktop',reducedMotion:'reduce'});
   try{
    const page=await context.newPage();
-   await page.route('https://open.spotify.com/embed/**',route=>route.fulfill({contentType:'text/html',body:'<!doctype html><html><body>Spotify embed isolated for responsive checks</body></html>'}));
    await page.goto('/');
    const noOverflow=async()=>expect(await page.evaluate(()=>document.documentElement.scrollWidth<=innerWidth)).toBe(true);
    const reachable=async(selector:string)=>{
@@ -28,7 +27,7 @@ test('the story adapts to small phones, tablets, laptops, and landscape touch sc
    await compactChapter();
    await page.getByRole('button',{name:'Open birthday letter',exact:true}).click();
    await expect(page.getByText(gift.letter[0],{exact:true})).toBeVisible();
-   await expect(page.locator('.floating-letter-photo')).toHaveCount(5);await noOverflow();
+   await expect(page.locator('.floating-letter-photo')).toHaveCount(4);await noOverflow();
    await expect(page.locator('.full-letter-actions')).toHaveCount(0);
    for(const caption of await page.locator('figcaption').all())expect(await caption.evaluate(el=>el.scrollHeight<=el.clientHeight+1&&getComputedStyle(el).webkitLineClamp==='none')).toBe(true);
    if(size.width<1050){const track=page.getByRole('region',{name:'Photo memories'});const original=await track.evaluate(el=>el.scrollLeft);await page.getByRole('button',{name:'Next photo',exact:true}).click();await expect.poll(()=>track.evaluate(el=>el.scrollLeft)).toBeGreaterThan(original);await page.getByRole('button',{name:'Previous photo',exact:true}).click();}
@@ -54,10 +53,6 @@ test('the story adapts to small phones, tablets, laptops, and landscape touch sc
    await page.getByRole('button',{name:'One last wish',exact:true}).click();
    await expect(page.getByRole('textbox',{name:'What does your heart wish for?'})).toBeVisible();
    await compactChapter();await reachable('.wish-send');await reachable('.chapter-footer>button:last-child');
-   await page.getByRole('button',{name:'Open Spotify player',exact:true}).click();
-   const player=await page.locator('#spotify-music-panel').boundingBox();
-   expect(player!.x).toBeGreaterThanOrEqual(0);expect(player!.y).toBeGreaterThanOrEqual(0);expect(player!.x+player!.width).toBeLessThanOrEqual(size.width);expect(player!.y+player!.height).toBeLessThanOrEqual(size.height);
-   await page.getByRole('complementary',{name:'Birthday soundtrack'}).getByRole('button',{name:'Minimize Spotify player'}).click();
    await page.getByRole('textbox',{name:'What does your heart wish for?'}).fill('A happy year with the people I love.');
    await page.getByRole('button',{name:'Make a Wish',exact:true}).click();
    await expect(page.getByRole('heading',{name:'all your wish will come true'})).toBeVisible();

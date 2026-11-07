@@ -5,7 +5,6 @@ import App from './App';
 import './styles/global.css';
 import './styles/letter.css';
 import './styles/bouquet.css';
-import './styles/music.css';
 import './styles/polish.css';
 import './styles/compact.css';
 import './styles/lock-compact.css';
