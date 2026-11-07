@@ -8,12 +8,12 @@ export const gift = {
   insideJokes: [] as string[], // Add your own little jokes to the happiness jar.
   closingLine: 'Another year of you, and I’m so lucky to be here for it.',
   letter: [
-    `It's your dayyy!!! Happy 18th Birthday, Marlisang! 💜`,
+    `It's your dayyy!!! Happy 19th Birthday, Marlisang! 💜`,
     `I just want to say na I'm very thankful nga naila taka, despite all these kahadloks of mine nga mo-meet ug someone new after everything that happened to me in the past. I never thought I'd say this to you, especially since bag-o pa sad ta ga-talk, pero I'm already very, very comfortable with you. It's like we have this connection nga mura'g dugay na kaayo ta nagkaila.`,
     `Everything before you felt grey and lifeless, including my own world. Pero pag-abot bitaw nimo, it's like you brought color and meaning into my life without even realizing it. You made things feel lighter, happier, and a little more beautiful. And the best part is, you didn't even have to try. It just happened naturally.`,
     `I'm genuinely grateful that we started talking and that I got the chance to know someone like you. You have this way of making ordinary days feel special, even through the simplest conversations. Sometimes, it's the unexpected people who bring the most unexpected happiness, and for me, you're one of them.`,
     `Ug asa man gani ta dad-on aning atong nasugdan karon, unta walay magbag-o sa way nato pagtratar sa usag usa. I don't want to rush anything. I just want to enjoy what we have right now and see where life takes us. Whatever happens, I hope we continue to be comfortable, honest, and happy with each other.`,
-    `Again, Happy 18th Birthday, Marlisang! I wish you nothing but genuine happiness, peace of mind, good health, and all the beautiful things this life has to offer. I hope this new chapter of your life brings you closer to your dreams and gives you countless reasons to smile.`,
+    `Again, Happy 19th Birthday, Marlisang! I wish you nothing but genuine happiness, peace of mind, good health, and all the beautiful things this life has to offer. I hope this new chapter of your life brings you closer to your dreams and gives you countless reasons to smile.`,
     `You deserve a birthday filled with love, laughter, and beautiful memories. And I hope you know how special you are, even on the days you don't feel like it.`,
     `Enjoy your special dayyy, Marlisang! 💜`
   ],
