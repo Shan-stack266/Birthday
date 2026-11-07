@@ -1,0 +1,44 @@
+import { test, expect } from '@playwright/test';
+
+test('bouquet moves, stationery folds both ways, and wishes dissolve before the popup',async({page},testInfo)=>{
+ await page.emulateMedia({reducedMotion:'no-preference'});
+ await page.addInitScript(()=>sessionStorage.setItem('purple-world-unlocked','yes'));
+ await page.goto('/');
+ await page.getByRole('button',{name:'I wrote you something',exact:true}).click();
+ await expect(page.locator('.bouquet-art')).toBeVisible();
+ const firstAngle=await page.locator('.bouquet-sway').evaluate(el=>getComputedStyle(el).rotate);
+ await expect.poll(()=>page.locator('.bouquet-sway').evaluate(el=>getComputedStyle(el).rotate)).not.toBe(firstAngle);
+ const bloom=page.locator('.bouquet-bloom').first();
+ const bloomAngle=await bloom.evaluate(el=>getComputedStyle(el).rotate);
+ await expect.poll(()=>bloom.evaluate(el=>getComputedStyle(el).rotate)).not.toBe(bloomAngle);
+ const stem=page.locator('.bouquet-stem').first();
+ const stemAngle=await stem.evaluate(el=>getComputedStyle(el).rotate);
+ await expect.poll(()=>stem.evaluate(el=>getComputedStyle(el).rotate)).not.toBe(stemAngle);
+ await page.screenshot({path:testInfo.outputPath('moving-bouquet.png'),fullPage:true});
+ await page.getByRole('button',{name:'Open birthday letter',exact:true}).click();
+ await expect(page.getByText('a little note, unfolding…')).toBeVisible();
+ await expect(page.locator('.paper-fold-top')).toHaveCSS('animation-name','paper-top-open');
+ await expect(page.locator('.paper-fold-bottom')).toHaveCSS('animation-name','paper-bottom-open');
+ await expect(page.locator('.floating-letter-photo')).toHaveCount(5);
+ // Wait for the actual 3D paper fold to finish before accessing the letter.
+ await expect.poll(()=>page.locator('.paper-fold-top').evaluate(el=>el.getAnimations().every(a=>a.playState==='finished'))).toBe(true);
+ await page.screenshot({path:testInfo.outputPath('unfolded-letter.png'),fullPage:true});
+ await page.getByRole('button',{name:'Fold My Letter'}).click();
+ await expect(page.locator('.is-folding')).toBeVisible();
+ await expect(page.locator('.paper-fold-top')).toHaveCSS('animation-name','paper-top-close');
+ await expect(page.getByRole('button',{name:'Open birthday letter',exact:true})).toBeVisible();
+ await expect(page.locator('.floating-letter-photo')).toHaveCount(0);
+ await page.getByRole('button',{name:'A few little reminders',exact:true}).click();
+ await expect(page.getByRole('heading',{name:'A Jar Full of Little Reasons'})).toBeVisible();
+ await page.getByRole('button',{name:'One last wish',exact:true}).click();
+ await page.getByRole('textbox',{name:'What does your heart wish for?'}).fill('A little more magic in every day.');
+ await page.getByRole('button',{name:'Make a Wish',exact:true}).click();
+ await expect(page.locator('.wish-dust i')).toHaveCount(65);
+ await expect(page.getByRole('dialog')).not.toBeVisible();
+ await expect(page.getByRole('button',{name:'Off to the stars…'})).toBeDisabled();
+ await expect(page.getByRole('heading',{name:'all your wish will come true',exact:true})).toBeVisible();
+ await page.screenshot({path:testInfo.outputPath('wish-message.png'),fullPage:true});
+ await page.keyboard.press('Escape');
+ await expect(page.getByRole('dialog')).not.toBeVisible();
+ expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
+});

@@ -1,0 +1,17 @@
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { MotionConfig } from 'motion/react';
+import App from './App';
+import './styles/global.css';
+import './styles/letter.css';
+import './styles/bouquet.css';
+import './styles/music.css';
+import './styles/polish.css';
+import './styles/compact.css';
+import './styles/lock-compact.css';
+import './styles/reading.css';
+import './styles/readable.css';
+import './styles/full-letter.css';
+import './styles/scrapbook.css';
+import './styles/brand.css';
+ReactDOM.createRoot(document.getElementById('root')!).render(<React.StrictMode><MotionConfig reducedMotion="user"><App /></MotionConfig></React.StrictMode>);

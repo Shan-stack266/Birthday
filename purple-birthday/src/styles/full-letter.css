@@ -1,0 +1,12 @@
+.full-letter .letter-writing{display:block}
+.letter-full-copy{height:auto;max-height:none;overflow:visible}
+.letter-full-copy>p{font:24px/1.45 'Caveat',cursive;color:#8c65a3;margin:17px 0;overflow-wrap:anywhere}
+.full-letter .letter-writing .letter-signature{margin:19px 0 5px;text-align:left;max-width:none}
+.full-letter .letter-open .letter-sheet{height:auto;max-height:none;overflow:visible;padding-bottom:25px}
+.full-letter .letter-writing .letter-salutation{margin:15px 0}
+.full-letter-actions{position:fixed;z-index:21;bottom:calc(var(--chapter-dock) + 13px + env(safe-area-inset-bottom));left:0;right:0;display:flex;justify-content:center;pointer-events:none}
+.full-letter-actions>.bubble-button{pointer-events:auto;min-height:44px;padding:11px 22px;font-size:13px;box-shadow:0 4px 0 #8254b7,0 0 0 5px #fff8fddf,0 7px 20px #684a8c25}
+.full-letter .section-footnote{padding-bottom:58px}
+@media(max-width:700px){.letter-full-copy>p{font-size:23px;line-height:1.45;margin:16px 0}.full-letter .letter-writing .letter-signature{font-size:20px;line-height:1.35}.full-letter-actions>.bubble-button{font-size:12px}.full-letter .letter-writing .letter-salutation{margin:13px 0}}
+@media(max-width:359px){.letter-full-copy>p{font-size:22px}}
+@media(max-height:500px) and (orientation:landscape){.full-letter .letter-writing{display:block}.full-letter .letter-writing .letter-salutation{margin:10px 0;font-size:23px}.letter-full-copy>p{font-size:22px;line-height:1.4;margin:14px 0}.full-letter .letter-writing .letter-signature{font-size:19px;margin:15px 0 0;max-width:none;text-align:left}.full-letter .letter-open .letter-sheet{padding:18px 22px 23px}.full-letter-actions>.bubble-button{min-height:42px;padding-block:9px;font-size:12px}}

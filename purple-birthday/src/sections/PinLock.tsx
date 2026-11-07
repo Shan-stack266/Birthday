@@ -1,0 +1,17 @@
+import { useEffect, useRef, useState } from 'react';
+import { motion } from 'motion/react';
+import { Delete, Heart, ArrowRight } from 'lucide-react';
+import { gift } from '../data/gift';
+import Brand from '../components/Brand';
+import UnlockSparkles from '../animations/UnlockSparkles';
+import { Character, HeartLock } from '../illustrations/StoryArt';
+import { Button, Decorations } from '../components/UI';
+export default function PinLock({onUnlock}:{onUnlock:()=>void}){
+ const [pin,setPin]=useState('');const [error,setError]=useState('');const [opening,setOpening]=useState(false);const timer=useRef<ReturnType<typeof setTimeout>|undefined>(undefined);
+ useEffect(()=>()=>clearTimeout(timer.current),[]);
+ function enter(value:string){if(opening)return;setError('');setPin(p=>p.length<6?p+value:p)}
+ function submit(){if(opening)return;if(pin.length!==6){setError('Six little digits, then a whole lot of magic!');return}if(pin!==gift.pin){setError('Oops! That’s not our little secret. Try again?');setPin('');return}setOpening(true);timer.current=setTimeout(onUnlock,950)}
+ useEffect(()=>{const handler=(e:KeyboardEvent)=>{if(e.ctrlKey||e.metaKey||e.altKey||e.target instanceof HTMLButtonElement&&(e.key==='Enter'||e.key===' '))return;if(/^\d$/.test(e.key)){e.preventDefault();enter(e.key)}else if(e.key==='Backspace'){e.preventDefault();if(!opening)setPin(p=>p.slice(0,-1))}else if(e.key==='Enter'){e.preventDefault();submit()}};window.addEventListener('keydown',handler);return()=>window.removeEventListener('keydown',handler)});
+ useEffect(()=>{if(pin.length===6)submit()},[pin]);
+ return <motion.main className="lock-page" exit={{opacity:0,scale:1.05}} transition={{duration:.4}}><Decorations/><div className="world-label"><Brand/></div><div className="lock-layout"><div className="lock-illustration"><HeartLock opening={opening} shake={!!error}/>{opening&&<UnlockSparkles/>}<Character className="lock-bunny"/><span className="hand-note">a secret just between us ♡</span></div><section className="pin-panel" aria-labelledby="pin-title"><span className="chapter-tag">YOUR BIRTHDAY ADVENTURE STARTS HERE</span><h1 id="pin-title">Psst... A Little<br/><span>Surprise Awaits You!</span></h1><p>Enter the secret code to unlock<br/>your magical birthday world!</p><div className="pin-dots" role="status" aria-label={`${pin.length} of 6 digits entered`}>{Array.from({length:6},(_,i)=><span key={i} className={i<pin.length?'filled':''}>{i<pin.length?<Heart size={19} fill="currentColor"/>:''}</span>)}</div><div className="keypad" aria-label="Secret code numeric keypad">{[1,2,3,4,5,6,7,8,9].map(n=><button disabled={opening} key={n} onClick={()=>enter(String(n))}>{n}</button>)}<button disabled={opening} onClick={()=>{setPin('');setError('')}} className="key-utility">Clear</button><button disabled={opening} onClick={()=>enter('0')}>0</button><button disabled={opening} aria-label="Delete last digit" className="key-utility" onClick={()=>setPin(p=>p.slice(0,-1))}><Delete size={20}/></button></div><p className="pin-error" role="status" aria-live="polite">{opening?'You found the magic! Opening your world…':error}</p><Button onClick={submit} disabled={opening}>{opening?'A little magic…':'Unlock My Surprise'}<ArrowRight size={18}/></Button><small>made with care, a little mischief & lots of purple</small></section></div><p className="lock-footer">A secret code. A special girl. A whole little world of surprises.</p></motion.main>
+}
