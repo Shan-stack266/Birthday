@@ -1,5 +1,5 @@
 export const gift = {
-  pin: '110907',
+  pin: '110807',
   recipient: 'Marlisang',
   title: 'HAPPY BIRTHDAY, {name}!',
   greeting: '{name}, welcome to your little purple world. I made every chapter just for you.',

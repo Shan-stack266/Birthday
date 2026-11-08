@@ -19,7 +19,7 @@ test('the story adapts to small phones, tablets, laptops, and landscape touch sc
     await expect.poll(()=>page.evaluate(()=>document.documentElement.scrollHeight)).toBeLessThanOrEqual(Math.ceil(size.height*(size.height<500?1.65:1.2)));
     await reachable('.chapter-footer>button:last-child');await reachable('.header-controls>.icon-button');
    };
-   await noOverflow();if(size.height>500)await reachable('.pin-panel>.bubble-button');await page.keyboard.type('110907');
+   await noOverflow();if(size.height>500)await reachable('.pin-panel>.bubble-button');await page.keyboard.type('110807');
    await expect(page.getByRole('heading',{name:'HAPPY BIRTHDAY, MARLISANG!'})).toBeVisible();await noOverflow();
    await compactChapter();
    await page.getByRole('button',{name:'I wrote you something',exact:true}).click();

@@ -5,7 +5,7 @@ test('the birthday adventure works from secret lock to final wish',async({page},
  await page.screenshot({path:testInfo.outputPath('lock.png'),fullPage:true});
  await page.keyboard.type('000000');await expect(page.getByText('Oops! That’s not our little secret. Try again?')).toBeVisible();
  await expect(page.getByRole('status',{name:'0 of 6 digits entered'})).toBeVisible();
- await page.keyboard.type('11090');await page.keyboard.press('Backspace');await page.keyboard.type('07');
+ await page.keyboard.type('11080');await page.keyboard.press('Backspace');await page.keyboard.type('07');
  await expect(page.getByRole('heading',{name:'HAPPY BIRTHDAY, MARLISANG!'})).toBeVisible();
  await expect(page.getByRole('navigation')).toHaveCount(0);await expect(page.getByText('made with a whole lot of love')).toHaveCount(0);
  await page.reload();await expect(page.getByRole('heading',{name:'HAPPY BIRTHDAY, MARLISANG!'})).toBeVisible();
@@ -37,7 +37,7 @@ test('the birthday adventure works from secret lock to final wish',async({page},
  expect(await page.evaluate(()=>document.documentElement.scrollWidth<=window.innerWidth)).toBe(true);
  await page.getByRole('button',{name:'Replay the Magic'}).click();await expect(page.getByRole('heading',{name:'HAPPY BIRTHDAY, MARLISANG!'})).toBeVisible();
  await page.getByRole('button',{name:'Lock your purple world'}).click();await expect(page.getByRole('heading',{name:'Psst... A Little Surprise Awaits You!'})).toBeVisible();await expect(page.locator('iframe')).toHaveCount(0);
- for(const digit of '110907')await page.getByRole('button',{name:digit,exact:true}).click();await expect(page.getByRole('heading',{name:'HAPPY BIRTHDAY, MARLISANG!'})).toBeVisible();
+ for(const digit of '110807')await page.getByRole('button',{name:digit,exact:true}).click();await expect(page.getByRole('heading',{name:'HAPPY BIRTHDAY, MARLISANG!'})).toBeVisible();
  expect(errors).toEqual([]);
 });
 const greeting="It's your dayyy!!! Happy 19th Birthday, Marlisang! 💜";

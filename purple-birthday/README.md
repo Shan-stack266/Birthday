@@ -19,7 +19,7 @@ In Windows PowerShell, use `npm.cmd` if script execution policy blocks `npm`. Bu
 
 ## Birthday adventure
 
-The PIN is **110907**. Use the keypad or keyboard; Backspace and Enter work. Completing six digits checks the code. Unlock state lasts for the current tab session. The header lock button clears it.
+The PIN is **110807**. Use the keypad or keyboard; Backspace and Enter work. Completing six digits checks the code. Unlock state lasts for the current tab session. The header lock button clears it.
 
 The Bouquet chapter combines swaying SVG flowers with a clickable letter tucked into the wrapping. Opening and closing the stationery uses two folding paper panels. Four photo frames appear beside the letter on desktop and around it on small screens.
 
